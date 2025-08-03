@@ -1,0 +1,163 @@
+# STUDIO FOTO CEKREK - Installation Instructions (CLEAN VERSION)
+
+## 1. Requirements
+- XAMPP/WAMP/LAMP with PHP 7.4+
+- MySQL 5.7+
+- Web browser
+
+## 2. Installation Steps
+
+### Step 1: Extract Files
+1. Extract STUDIO_FOTO_CEKREK.rar to htdocs folder
+2. Path should be: C:\xampp\htdocs\STUDIO_FOTO_CEKREK\
+
+### Step 2: Database Setup
+1. Start XAMPP (Apache + MySQL)
+2. Open phpMyAdmin (http://localhost/phpmyadmin)
+3. Create new database: 'studio_foto_cekrek'
+4. Import database file: database_clean_original_[timestamp].sql
+   ⚠️ IMPORTANT: Use the "clean" database file with original packages!
+
+### Step 3: Configuration
+1. Edit config/database.php if needed:
+   - Host: localhost
+   - Database: studio_foto_cekrek
+   - Username: root
+   - Password: (empty for XAMPP)
+
+### Step 4: Verify Installation
+1. Open: http://localhost/STUDIO_FOTO_CEKREK/
+2. You should see exactly 5 original packages:
+   ✅ Solo (Rp 30.000, 10 menit, 1 orang)
+   ✅ Duo (Rp 50.000, 15 menit, 2 orang)
+   ✅ Trio (Rp 70.000, 15 menit, 3 orang)
+   ✅ Grup (Rp 20.000/orang, 25 menit, 4-8 orang)
+   ✅ Photobox (Rp 20.000/orang, 15 menit, 1-6 orang)
+
+### Step 5: Admin Access
+1. Admin login: http://localhost/STUDIO_FOTO_CEKREK/admin/
+2. Default admin credentials (check database for exact credentials)
+
+## 3. What You Should See
+
+### Homepage Packages
+- Solo: Individual session, fixed price Rp 30.000
+- Duo: Couple session, fixed price Rp 50.000
+- Trio: Small group, fixed price Rp 70.000
+- Grup: Group session, Rp 20.000 per person
+- Photobox: Photobox session, Rp 20.000 per person
+
+### Booking Form
+- Package selection with correct prices
+- Duration in minutes (not hours)
+- People count field for Grup and Photobox
+- Per-person calculation working
+
+### Admin Dashboard
+- Package management with CRUD operations
+- Duration in minutes
+- Per-person checkbox functionality
+- Real-time updates
+
+## 4. Common Issues & Solutions
+
+### ❌ Wrong Packages Showing
+Problem: You see "Portrait Session", "Family Package", "Wedding Package" instead of Solo/Duo/Trio
+Solution: 
+- You imported the wrong database file
+- Delete the database in phpMyAdmin
+- Create new database 'studio_foto_cekrek'
+- Import database_clean_original_[timestamp].sql (the CLEAN version)
+
+### ❌ CSS Not Loading
+Problem: Website looks unstyled
+Solution:
+- Check if assets/css/style.css exists
+- Verify folder structure is intact
+- Check browser console for 404 errors
+
+### ❌ Database Connection Error
+Problem: "Database connection failed"
+Solution:
+- Verify config/database.php settings
+- Ensure MySQL service is running
+- Check database name is exactly 'studio_foto_cekrek'
+
+### ❌ Per-Person Calculation Not Working
+Problem: Grup package doesn't show people count field
+Solution:
+- Verify database import was successful
+- Check if packages table has 'includes' column
+- Grup package should have "Harga per orang" in includes field
+
+### ❌ Duration Shows in Hours
+Problem: Packages show "1 jam" instead of "60 menit"
+Solution:
+- Check if packages table has 'duration_minutes' column
+- Re-import the clean database
+- Verify duration_minutes values are set correctly
+
+## 5. File Structure Verification
+
+After extraction, verify these files exist:
+```
+STUDIO_FOTO_CEKREK/
+├── admin/
+│   ├── dashboard.php ✅
+│   ├── packages.php ✅
+│   ├── reservations.php ✅
+│   └── ... (other admin files)
+├── assets/
+│   ├── css/
+│   │   └── style.css ✅
+│   └── js/
+├── config/
+│   └── database.php ✅
+├── uploads/
+│   ├── gallery/ ✅
+│   └── payment_proofs/ ✅
+├── index.php ✅
+├── booking.php ✅
+├── login.php ✅
+├── register.php ✅
+└── database_clean_original_[timestamp].sql ✅
+```
+
+## 6. Testing Checklist
+
+After installation, test these features:
+
+### Customer Features
+□ Homepage loads with 5 original packages
+□ Registration form works
+□ Login system functional
+□ Booking form shows correct packages
+□ Grup package shows people count field (4-8 orang)
+□ Photobox package shows people count field (1-6 orang)
+□ Per-person calculation works (4 orang × Rp 20.000 = Rp 80.000)
+□ Duration shows in minutes (Solo: 10 menit, Grup: 25 menit)
+
+### Admin Features
+□ Admin login works
+□ Package management shows 5 original packages
+□ Add new package functionality
+□ Edit package functionality
+□ Duration in minutes, not hours
+□ Per-person checkbox works
+
+## 7. Support
+
+If you still have issues after following this guide:
+1. Check the TRANSFER_CHECKLIST.txt file
+2. Verify you used the correct database file (clean version)
+3. Contact developer for technical support
+
+## 8. Important Notes
+
+- Always use database_clean_original_[timestamp].sql for transfer
+- Never use database_export_[timestamp].sql (contains test data)
+- Original packages are: Solo, Duo, Trio, Grup, Photobox
+- Test packages (Portrait, Family, Wedding) should NOT appear
+
+Generated on: [CURRENT_DATE]
+Version: Clean Original Packages
